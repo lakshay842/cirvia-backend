@@ -1,0 +1,28 @@
+import { REDIS_CACHE_POLICY } from '@shared/cache/redis-cache-policy.js';
+
+export const USERS_CONSTANTS = {
+  MAX_UPLOAD_BYTES: 10 * 1024 * 1024,
+  ALLOWED_IMAGE_MIMES: ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'],
+  MAX_BIO_LENGTH: 500,
+  MAX_INTERESTS: 20,
+  DEFAULT_PAGE: 1,
+  DEFAULT_LIMIT: 20,
+  MAX_LIMIT: 100,
+  AVATAR_FOLDER: 'avatars',
+  COVER_FOLDER: 'covers',
+  ACTIVITY_TYPES: {
+    PROFILE_UPDATED: 'PROFILE_UPDATED',
+    AVATAR_UPDATED: 'AVATAR_UPDATED',
+    COVER_UPDATED: 'COVER_UPDATED',
+    INTERESTS_UPDATED: 'INTERESTS_UPDATED',
+    USER_FOLLOWED: 'USER_FOLLOWED',
+    USER_UNFOLLOWED: 'USER_UNFOLLOWED',
+    EVENT_SAVED: 'EVENT_SAVED',
+    SETTINGS_UPDATED: 'SETTINGS_UPDATED',
+  } as const,
+  REDIS_KEYS: {
+    profileCache: REDIS_CACHE_POLICY.keys.userProfile,
+    publicProfileCache: REDIS_CACHE_POLICY.keys.userPublicProfile,
+  },
+  CACHE_TTL_SECONDS: REDIS_CACHE_POLICY.TTL.MEDIUM,
+} as const;

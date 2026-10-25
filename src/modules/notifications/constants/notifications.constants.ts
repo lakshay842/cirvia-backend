@@ -1,0 +1,61 @@
+import { REDIS_CACHE_POLICY } from '@shared/cache/redis-cache-policy.js';
+
+export const NOTIFICATIONS_CONSTANTS = {
+  QUEUE_NAME: 'notifications',
+  DEFAULT_CURRENCY: 'INR',
+  JOB_TYPES: {
+    DISPATCH: 'dispatch',
+    SEND_EMAIL: 'send_email',
+    SEND_PUSH: 'send_push',
+  },
+  CATEGORIES: {
+    BOOKING: 'booking',
+    PAYMENT: 'payment',
+    WALLET: 'wallet',
+    KYC: 'kyc',
+    HOST: 'host',
+    EVENT: 'event',
+    SYSTEM: 'system',
+    MARKETING: 'marketing',
+    ADMIN: 'admin',
+  },
+  TRIGGERS: {
+    BOOKING_CREATED: 'booking.created',
+    BOOKING_CONFIRMED: 'booking.confirmed',
+    BOOKING_CANCELLED: 'booking.cancelled',
+    PAYMENT_SUCCESS: 'payment.success',
+    PAYMENT_FAILED: 'payment.failed',
+    REFUND: 'payment.refund_completed',
+    WALLET_SETTLEMENT: 'wallet.settled',
+    WITHDRAWAL_APPROVED: 'wallet.withdrawal_approved',
+    WITHDRAWAL_REJECTED: 'wallet.withdrawal_rejected',
+    HOST_APPROVED: 'host.approved',
+    HOST_REJECTED: 'host.rejected',
+    EVENT_APPROVED: 'event.approved',
+    EVENT_CANCELLED: 'event.cancelled',
+    KYC_APPROVED: 'verification.approved',
+    KYC_REJECTED: 'verification.rejected',
+    KYC_SUBMITTED: 'verification.submitted',
+    WAITLIST_PROMOTED: 'WAITLIST_PROMOTED',
+  },
+  REDIS_KEYS: {
+    unreadCount: REDIS_CACHE_POLICY.keys.notificationUnread,
+    list: (userId: string, hash: string) => `cache:notifications:list:${userId}:${hash}`,
+  },
+  REDIS_TTL: {
+    unreadCount: REDIS_CACHE_POLICY.TTL.SHORT,
+    list: REDIS_CACHE_POLICY.TTL.SHORT,
+  },
+  AUDIT_ACTIONS: {
+    CREATED: 'notification.created',
+    READ: 'notification.read',
+    READ_ALL: 'notification.read_all',
+    DELETED: 'notification.deleted',
+    PREFERENCES_UPDATED: 'notification.preferences_updated',
+    EMAIL_SENT: 'notification.email_sent',
+    PUSH_SENT: 'notification.push_sent',
+  },
+  ERROR_CODES: {
+    NOTIFICATION_NOT_FOUND: 'NOTIFICATION_NOT_FOUND',
+  },
+} as const;

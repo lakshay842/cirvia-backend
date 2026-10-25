@@ -1,0 +1,56 @@
+import { REDIS_CACHE_POLICY } from '@shared/cache/redis-cache-policy.js';
+
+export const BOOKINGS_CONSTANTS = {
+  DEFAULT_CURRENCY: 'INR',
+  BOOKING_TIMEOUT_MINUTES: 15,
+  QUEUE_NAME: 'bookings',
+  JOB_TYPES: {
+    EXPIRE_RESERVATION: 'expire_reservation',
+    PROMOTE_WAITLIST: 'promote_waitlist',
+  },
+  REDIS_KEYS: {
+    eventCapacity: REDIS_CACHE_POLICY.keys.bookingCapacity,
+    eventBookingCount: REDIS_CACHE_POLICY.keys.bookingCount,
+    bookingDetails: REDIS_CACHE_POLICY.keys.bookingDetails,
+  },
+  REDIS_TTL: {
+    capacity: REDIS_CACHE_POLICY.TTL.MEDIUM,
+    details: REDIS_CACHE_POLICY.TTL.SHORT,
+  },
+  AUDIT_ACTIONS: {
+    CREATED: 'booking.created',
+    CANCELLED: 'booking.cancelled',
+    APPROVED: 'booking.approved',
+    REJECTED: 'booking.rejected',
+    EXPIRED: 'booking.expired',
+    WAITLIST_JOINED: 'booking.waitlist_joined',
+    WAITLIST_LEFT: 'booking.waitlist_left',
+    CANCELLATION_REQUESTED: 'booking.cancellation_requested',
+  },
+  HISTORY_ACTIONS: {
+    CREATED: 'CREATED',
+    APPROVED: 'APPROVED',
+    REJECTED: 'REJECTED',
+    CANCELLED: 'CANCELLED',
+    EXPIRED: 'EXPIRED',
+    PAYMENT_PENDING: 'PAYMENT_PENDING',
+    CONFIRMED: 'CONFIRMED',
+    CANCELLATION_REQUESTED: 'CANCELLATION_REQUESTED',
+    WAITLIST_JOINED: 'WAITLIST_JOINED',
+    WAITLIST_LEFT: 'WAITLIST_LEFT',
+    WAITLIST_PROMOTED: 'WAITLIST_PROMOTED',
+  },
+  ERROR_CODES: {
+    BOOKING_ALREADY_EXISTS: 'BOOKING_ALREADY_EXISTS',
+    EVENT_FULL: 'EVENT_FULL',
+    WAITLIST_JOINED: 'WAITLIST_JOINED',
+    BOOKING_CANCELLED: 'BOOKING_CANCELLED',
+    BOOKING_NOT_CANCELLABLE: 'BOOKING_NOT_CANCELLABLE',
+  },
+  BOOKABLE_EVENT_STATUSES: ['PUBLISHED', 'BOOKING_OPEN'] as const,
+  ACTIVE_BOOKING_STATUSES: ['REQUESTED', 'PENDING', 'PENDING_PAYMENT', 'CONFIRMED', 'APPROVED'] as const,
+  CANCELLABLE_STATUSES: ['REQUESTED', 'PENDING', 'PENDING_PAYMENT', 'CONFIRMED', 'APPROVED'] as const,
+  HOST_MANAGEABLE_STATUSES: ['REQUESTED', 'PENDING'] as const,
+} as const;
+
+export type BookableEventStatus = (typeof BOOKINGS_CONSTANTS.BOOKABLE_EVENT_STATUSES)[number];
