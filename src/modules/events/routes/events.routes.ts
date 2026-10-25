@@ -45,7 +45,7 @@ function uuidEventIdOnly(req: Request, res: Response, next: NextFunction): void 
         next('route');
         return;
       }
-      req.params.slug = segment;
+      req.params.slug = slugResult.data.slug;
       void optionalAuthenticate(req, res, (err) => {
         if (err) {
           next(err);

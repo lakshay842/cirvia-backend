@@ -122,7 +122,7 @@ export class WalletController {
     }
   };
 
-  getAdminWalletOverview = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  getAdminWalletOverview = async (_req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       const overview = await walletService.getAdminWalletOverview();
       sendSuccess(res, { message: 'Admin wallet overview retrieved.', data: { overview } });
